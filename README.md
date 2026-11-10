@@ -7,6 +7,74 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Database: Neon Postgres
+
+This project uses [Neon](https://neon.com) (serverless Postgres) as its database.
+
+- Organization: `org-icy-band-97571257`
+- Project: `late-lab-39744625`
+- Console: https://console.neon.tech/app/projects/late-lab-39744625/
+
+### 1. Install and sign in to the Neon CLI
+
+```bash
+npm i -g neon@latest
+neon login
+neon me   # confirms you are signed in
+```
+
+### 2. Link the project and write the connection strings
+
+Run from the repository root:
+
+```bash
+neon init -y --agent claude-code --org-id org-icy-band-97571257 --project-id late-lab-39744625
+```
+
+This links the project (`.neon`) and appends these keys to `.env`:
+
+| Key | Purpose |
+|-----|---------|
+| `DATABASE_URL` | Pooled connection (`-pooler` host), for the app |
+| `DATABASE_URL_UNPOOLED` | Direct connection, for desktop clients and isolated migrations |
+| `NEON_BRANCH`, `NEON_BRANCH_ID`, `NEON_FUNCTION_HOST_SUFFIX` | Neon branch metadata |
+
+`neon init` also creates `neon.ts` and installs a few npm packages. The Laravel app does not use them.
+
+### 3. Point Laravel at Neon
+
+Laravel reads `DB_URL`, not `DATABASE_URL` (see `config/database.php`). Update `.env`:
+
+```dotenv
+DB_CONNECTION=pgsql
+# Must be placed BELOW the DATABASE_URL line
+DB_URL="${DATABASE_URL}"
+```
+
+> phpdotenv only expands `${VAR}` when `VAR` is defined earlier in the file. If `DB_URL` sits above `DATABASE_URL`, Laravel receives the literal text `${DATABASE_URL}` and falls back to `DB_HOST=127.0.0.1`.
+
+When `DB_URL` is set, it overrides `DB_HOST`, `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD`. `php artisan db:show` still prints those leftover values, so they can be misleading.
+
+### 4. Verify and migrate
+
+```bash
+php artisan db:show    # should report PostgreSQL and a *.neon.tech URL
+php artisan migrate
+```
+
+The pooled URL works for a regular `migrate`. For `migrate --isolated` (advisory locks), use `DATABASE_URL_UNPOOLED`.
+
+### Connecting from TablePlus
+
+1. Copy `DATABASE_URL_UNPOOLED` from `.env`.
+2. TablePlus → **Create a new connection → Import from URL** → paste it.
+3. Make sure **SSL mode** is `REQUIRE`, then **Test** and **Connect**.
+
+### Security
+
+- Never commit `.env` or paste connection strings in chats, issues, or logs. They contain the database password.
+- If a password leaks, reset it in Neon Console → **Roles** → `neondb_owner` → **Reset password**, then update `.env` and TablePlus.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
