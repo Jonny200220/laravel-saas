@@ -1,4 +1,7 @@
 @extends('layout.auth')
+@section('title')
+    Registro de Cuenta
+@endsection
 @section('auth-contents')
 
     <form class="mt-14 space-y-5" novalidate>

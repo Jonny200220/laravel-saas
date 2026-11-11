@@ -1,4 +1,7 @@
 @extends('layout.auth')
+@section('title')
+    Inicio de Sesión
+@endsection
 @section('auth-contents')
     <form class="mt-14 space-y-5" novalidate>
         <div class="flex flex-col gap-2">
