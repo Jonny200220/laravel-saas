@@ -4,20 +4,34 @@
 @endsection
 @section('auth-contents')
 
-    <form method="POST" class="mt-14 space-y-5" novalidate>
+    <form method="POST" class="mt-14 space-y-5" action="{{ route('register') }}">
         <div class="space-y-2">
             <label class="font-bold text-2xl block" for="name">Nombre</label>
 
-            <input id="name" type="text" placeholder="Tu Nombre" class="w-full border border-gray-300 p-3 rounded-lg"
-                name="name" />
+            <input 
+            id="name"
+            type="text"
+            placeholder="Tu Nombre"
+            class="w-full border border-gray-300 p-3 rounded-lg"
+            name="name"/>
         </div>
+        @error('name')
+            <p class="text-red-600 text-md text-center">{{ $message }}</p>
+        @enderror
 
         <div class="space-y-2">
             <label class="font-bold text-2xl block" for="email">Email</label>
 
-            <input id="email" type="email" placeholder="Email de Registro"
-                class="w-full border border-gray-300 p-3 rounded-lg" name="email" />
+            <input
+            id="email"
+            type="email"
+            placeholder="Email de Registro"
+            class="w-full border border-gray-300 p-3 rounded-lg"
+            name="email"/>
         </div>
+        @error('email')
+            <p class="text-red-600 text-md text-center">{{ $message }}</p>
+        @enderror
 
         <div class="space-y-2">
             <label class="font-bold text-2xl block">Password</label>
