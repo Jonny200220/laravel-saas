@@ -16,7 +16,6 @@
 </head>
 
 <body class="bg-gray-100">
-    <header>Esto es un Header</header>
     @yield('contents')
 </body>
 
