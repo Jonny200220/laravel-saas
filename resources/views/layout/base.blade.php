@@ -20,7 +20,7 @@
             <div class="w-full max-w-100 ">
                 <img src="{{ asset('img/logo.svg') }}" alt="CashTrackr Logo" class="w-full block">
             </div>
-            <nav>
+            <nav class="flex flex-col lg:flex-row items-center gap-4">
                 <a
                 class="text-white font-bold uppercase p-2"
                 href="{{ route('login') }}">
