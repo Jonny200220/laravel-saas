@@ -4,7 +4,7 @@
 @endsection
 @section('auth-contents')
 
-    <form method="POST" class="mt-14 space-y-5" action="{{ route('register') }}">
+    <form method="POST" class="mt-14 space-y-5" action="{{ route('register.store') }}">
         <div class="space-y-2">
             <label class="font-bold text-2xl block" for="name">Nombre</label>
 
