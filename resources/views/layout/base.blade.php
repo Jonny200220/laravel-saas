@@ -22,11 +22,11 @@
             </div>
             <nav class="flex flex-col lg:flex-row items-center gap-4">
                 <a
-                class="text-white font-bold uppercase p-2"
+                class="text-white font-bold uppercase p-2 hover:text-amber-500"
                 href="{{ route('login') }}">
                 Iniciar Sesión</a>
                 <a
-                class="font-bold uppercase border-2 border-amber-500 px-5 py-2 bg-amber-500 text-white rounded-md"
+                class="font-bold uppercase border-2 border-amber-500 px-5 py-2 bg-amber-500 text-white rounded-md hover:bg-amber-600 hover:text-purple-950"
                 href="{{ route('register') }}">
                 Crear Cuenta</a>
             </nav>
