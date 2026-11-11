@@ -36,16 +36,29 @@
         <div class="space-y-2">
             <label class="font-bold text-2xl block">Password</label>
 
-            <input type="password" placeholder="Password de Registro" class="w-full border border-gray-300 p-3 rounded-lg"
-                name="password" />
+            <input
+            type="password"
+            placeholder="Password de Registro"
+            class="w-full border border-gray-300 p-3 rounded-lg"
+            name="password" />
         </div>
+        @error('password')
+            <p class="text-red-600 text-md text-center">{{ $message }}</p>
+        @enderror
 
         <div class="space-y-2">
             <label class="font-bold text-2xl block" for="password_confirmation">Repetir Password</label>
 
-            <input type="password" placeholder="Password de Registro" class="w-full border border-gray-300 p-3 rounded-lg"
-                name="password_confirmation" />
+            <input
+            type="password"
+            placeholder="Password de Registro"
+            class="w-full border border-gray-300 p-3 rounded-lg"
+            name="password_confirmation"
+            />
         </div>
+        @error('password_confirmation')
+            <p class="text-red-600 text-md text-center">{{ $message }}</p>
+        @enderror
 
         <input type="submit" value='Registrarme'
             class="bg-purple-950 hover:bg-purple-800 w-full p-3 rounded-lg text-white font-bold  text-xl cursor-pointer" />
