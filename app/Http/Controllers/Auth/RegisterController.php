@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SignUpRequest;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -19,6 +20,9 @@ class RegisterController extends Controller
         $user = User::create($data);
 
         event(new Registered($user));
+
+        // Login automático del usuario después de registrarse
+        Auth::login($user);
     }
 
 }
