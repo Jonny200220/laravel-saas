@@ -25,6 +25,10 @@ class VerifyEmail extends Notification
     /**
      * Get the mail representation of the notification.
      */
+    /* Aqui se define el correo que se enviará al usuario para verificar su correo electrónico
+    El objeto $notifiable es el usuario que se está registrando
+    y se le pasa la notificación de verificación de correo electrónico
+    */
     public function toMail(object $notifiable): MailMessage
     {
         $verificationUrl = URL::temporarySignedRoute(
