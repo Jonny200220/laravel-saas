@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SignUpRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -13,10 +14,15 @@ class RegisterController extends Controller
         return view('auth.register');
     }
     public function store(SignUpRequest $request){
-        $data = $request->validated();
+        
+        $data = $request -> validated();
 
-        // Insertar en la base de datos
-        User::create($data);
+        $user = User::create($data);
+
+        event(new Registered($user));
+
+        // Login automático del usuario después de registrarse
+        Auth::login($user);
     }
 
 }

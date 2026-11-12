@@ -22,7 +22,8 @@ class SignUpRequest extends FormRequest
             'name.required' => 'El Nombre es Obligatorio',
             'email.required' => 'El E-mail es Obligatorio',
             'email.email' => 'El E-mail no es Válido',
-
+            'email.unique' => 'El E-mail ya está en uso',
+            
             'password.required' => 'La Contraseña es Obligatoria',
             'password.min' => 'La Contraseña debe tener al menos :min caracteres',
             'password.confirmed' => 'La Contraseña no coincide',
@@ -44,14 +45,15 @@ class SignUpRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'confirmed',
-            Password::min(8),
-            // ->letters()
-            // ->mixedCase()
-            // ->symbols()
-            // ->numbers()
-            // ->uncompromised()],
-            ]];
+            Password::min(8)
+            ->letters()
+            ->mixedCase()
+            ->symbols()
+            ->numbers()
+            ->uncompromised()
+            ],
+        ];
     }
 }
