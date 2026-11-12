@@ -24,9 +24,7 @@
             value="{{ old('email') }}"
             class="w-full border border-gray-300 p-3 rounded-lg" tabindex="1" />
         </div>
-        @error('email')
-            <p class="text-red-600 text-md text-center">{{ $message }}</p>
-        @enderror
+        <x-input-error field="email"/>
 
         <div class="flex flex-col gap-2">
             <div class="flex  items-center justify-between">
@@ -41,9 +39,7 @@
             class="w-full border border-gray-300 p-3 rounded-lg"
             tabindex="2" />
         </div> 
-        @error('password')
-            <p class="text-red-600 text-md text-center">{{ $message }}</p>
-        @enderror
+        <x-input-error field="password"/>
 
         <input type="submit" value='Iniciar Sesión'
             class="bg-purple-950 hover:bg-purple-800 w-full p-3 rounded-lg text-white font-bold  text-xl cursor-pointer" />
