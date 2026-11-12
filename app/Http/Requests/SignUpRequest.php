@@ -31,6 +31,7 @@ class SignUpRequest extends FormRequest
             'password.mixedCase' => 'La Contraseña debe tener al menos una letra mayúscula y una letra minúscula',
             'password.numbers' => 'La Contraseña debe tener al menos un número',
             'password.uncompromised' => 'La Contraseña no debe ser fácil de adivinar',
+
         ];
     }
 
@@ -45,12 +46,12 @@ class SignUpRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email'],
             'password' => ['required', 'confirmed',
-            Password::min(8)
-            ->letters()
-            ->mixedCase()
-            ->symbols()
-            ->numbers()
-            ->uncompromised()],
-        ];
+            Password::min(8),
+            // ->letters()
+            // ->mixedCase()
+            // ->symbols()
+            // ->numbers()
+            // ->uncompromised()],
+            ]];
     }
 }
