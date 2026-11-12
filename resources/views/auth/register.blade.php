@@ -13,7 +13,9 @@
             type="text"
             placeholder="Tu Nombre"
             class="w-full border border-gray-300 p-3 rounded-lg"
-            name="name"/>
+            name="name"
+            value="{{ old('name') }}"
+            />
         </div>
         @error('name')
             <p class="text-red-600 text-md text-center">{{ $message }}</p>
@@ -27,7 +29,9 @@
             type="email"
             placeholder="Email de Registro"
             class="w-full border border-gray-300 p-3 rounded-lg"
-            name="email"/>
+            name="email"
+            value="{{ old('email') }}"
+            />
         </div>
         @error('email')
             <p class="text-red-600 text-md text-center">{{ $message }}</p>
@@ -40,7 +44,8 @@
             type="password"
             placeholder="Password de Registro"
             class="w-full border border-gray-300 p-3 rounded-lg"
-            name="password" />
+            name="password"
+            />
         </div>
         @error('password')
             <p class="text-red-600 text-md text-center">{{ $message }}</p>
