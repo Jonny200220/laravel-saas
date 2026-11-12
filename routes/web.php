@@ -18,3 +18,7 @@ Route::get('/auth/login', [LoginController::class, 'index']) -> name('login');
 
 Route::get('/auth/register', [RegisterController::class, 'index']) -> name('register');
 Route::post('/auth/register', [RegisterController::class, 'store']) -> name('register.store');
+
+Route::get('/email/verify/{id}/{hash}', function($id, $hash){
+    return 'Correo verificado correctamente';
+}) -> name('verification.verify');
