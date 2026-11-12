@@ -26,3 +26,9 @@ Route::get('/email/verify/{id}/{hash}', function(EmailVerificationRequest $reque
     // signed se encarga de verificar que la URL sea válida y no haya sido manipulada
     // auth se encarga de verificar que el usuario esté autenticado
 })->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::get('/email/verify', function(){
+    return view('auth.verify-email');
+    /* middleware('auth') se encarga de verificar que el usuario esté autenticado
+    se ejecuta antes de la función que se encarga de retornar la vista */
+})-> middleware('auth')->name('verification.notice');

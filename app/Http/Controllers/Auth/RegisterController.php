@@ -23,6 +23,8 @@ class RegisterController extends Controller
 
         // Login automático del usuario después de registrarse
         Auth::login($user);
+
+        return redirect() -> route('verification.notice');
     }
 
 }
