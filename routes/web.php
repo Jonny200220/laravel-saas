@@ -21,7 +21,8 @@ Route::get('/auth/register', [RegisterController::class, 'index']) -> name('regi
 Route::post('/auth/register', [RegisterController::class, 'store']) -> name('register.store');
 
 Route::get('/email/verify/{id}/{hash}', function(EmailVerificationRequest $request){
+    // fulfilled se encarga de verificar que la URL sea válida y no haya sido manipulada
     $request->fulfill();
     // signed se encarga de verificar que la URL sea válida y no haya sido manipulada
     // auth se encarga de verificar que el usuario esté autenticado
-})->middleware('auth', 'signed') -> name('verification.verify');
+})->middleware(['auth', 'signed'])->name('verification.verify');
