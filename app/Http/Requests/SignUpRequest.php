@@ -23,7 +23,7 @@ class SignUpRequest extends FormRequest
             'email.required' => 'El E-mail es Obligatorio',
             'email.email' => 'El E-mail no es Válido',
             'email.unique' => 'El E-mail ya está en uso',
-            
+
             'password.required' => 'La Contraseña es Obligatoria',
             'password.min' => 'La Contraseña debe tener al menos :min caracteres',
             'password.confirmed' => 'La Contraseña no coincide',
