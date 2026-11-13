@@ -37,9 +37,12 @@ Route::get('/email/verify', function(){
 })-> middleware('auth')->name('verification.notice');
 
 Route::post('/email/verification-notification', function(Request $request){
-    dd($request->user());
-    
-}) -> middleware(['auth']) -> name('verification.send');
+
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('success', 'Hemos enviado un nuevo enlace de verificación a tu email');
+
+    /* throttle:2,1 se encarga de limitar el número de peticiones a 2 por minuto */
+    }) -> middleware(['auth', 'throttle:2,1']) -> name('verification.send');
 
 Route::get('/dashboard', function(){
     return view('dashboard');

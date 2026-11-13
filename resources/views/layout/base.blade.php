@@ -17,19 +17,31 @@
 <body class="bg-gray-100">
     <header class="bg-purple-950 py-4">
         <div class="max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between">
+            
             <div class="w-full max-w-100 ">
                 <img src="{{ asset('img/logo.svg') }}" alt="CashTrackr Logo" class="w-full block">
             </div>
-            <nav class="flex flex-col lg:flex-row items-center gap-4">
-                <a
-                class="text-white font-bold uppercase p-2 hover:text-amber-500"
-                href="{{ route('login') }}">
-                Iniciar Sesión</a>
-                <a
-                class="font-bold uppercase border-2 border-amber-500 px-5 py-2 bg-amber-500 text-white rounded-md hover:bg-amber-600 hover:text-purple-950"
-                href="{{ route('register') }}">
-                Crear Cuenta</a>
-            </nav>
+            @auth
+                <nav class="flex flex-col lg:flex-row items-center gap-4">
+                    <a
+                    class="text-white font-bold uppercase p-2 hover:text-amber-500"
+                    href="{{ route('dashboard') }}">
+                    Dashboard</a>
+                </nav>
+            @else
+                <nav class="flex flex-col lg:flex-row items-center gap-4">
+                    <a
+                    class="text-white font-bold uppercase p-2 hover:text-amber-500"
+                    href="{{ route('login') }}">
+                    Iniciar Sesión</a>
+                    <a
+                    class="font-bold uppercase border-2 border-amber-500 px-5 py-2 bg-amber-500 text-white rounded-md hover:bg-amber-600 hover:text-purple-950"
+                    href="{{ route('register') }}">
+                    Crear Cuenta</a>
+                </nav>
+            @endauth
+            
+        
         </div>
     </header>
     @yield('contents')
