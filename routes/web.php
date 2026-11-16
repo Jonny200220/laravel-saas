@@ -33,8 +33,4 @@ Route::get('/email/verify', function(){
     return view('auth.verify-email');
     /* middleware('auth') se encarga de verificar que el usuario esté autenticado
     se ejecuta antes de la función que se encarga de retornar la vista */
-})-> middleware('auth')->name('verification.notice');
-
-Route::get('/dashboard', function(){
-    return view('dashboard');
-})-> middleware(['auth', 'verified'])-> name('dashboard');
+})-> middleware('auth')->name('verification.notice'); 
