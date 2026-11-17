@@ -34,16 +34,4 @@ Route::get('/email/verify', function(){
     return view('auth.verify-email');
     /* middleware('auth') se encarga de verificar que el usuario esté autenticado
     se ejecuta antes de la función que se encarga de retornar la vista */
-})-> middleware('auth')->name('verification.notice');
-
-Route::post('/email/verification-notification', function(Request $request){
-
-    $request->user()->sendEmailVerificationNotification();
-    return back()->with('success', 'Hemos enviado un nuevo enlace de verificación a tu email');
-
-    /* throttle:2,1 se encarga de limitar el número de peticiones a 2 por minuto */
-    }) -> middleware(['auth', 'throttle:2,1']) -> name('verification.send');
-
-Route::get('/dashboard', function(){
-    return view('dashboard');
-})-> middleware(['auth', 'verified'])-> name('dashboard');
+})-> middleware('auth')->name('verification.notice'); 
